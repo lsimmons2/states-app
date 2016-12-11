@@ -1,41 +1,16 @@
 
-import http from 'http';
-import url from 'url';
+import express from 'express';
+import path from 'path';
+import routes from './routes';
 
-import * as ctrl  from './controller';
+const port = process.env.PORT || 8080;
+const app = express();
 
+app.use('/states', routes);
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './index.html'));
+})
 
-let port = process.env.PORT || 8080;
-
-function router(handle, pathname, response, request) {
-  console.log('About to route a request for ' + pathname);
-  if (typeof handle[pathname] === 'function') {
-    handle[pathname](response, request);
-  } else {
-    console.log('No request handler found for ' + pathname);
-    response.writeHead(404, {'Content-Type': 'text/html'});
-    response.write('404 Not found');
-    response.end();
-  }
-}
-
-
-function start(route, handle) {
-  http.createServer(onRequest).listen(port);
-  console.log('server listening on port ' + port);
-
-  function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname;
-    console.log('Request for ' + pathname + ' received.');
-    route(handle, pathname, response, request);
-  }
-
-}
-
-
-
-let handle = {};
-handle['/'] = ctrl.start;
-handle['/start'] = ctrl.start;
-
-start(router, handle);
+app.listen(port, () => {
+ console.log('listening on port ' + port);
+})

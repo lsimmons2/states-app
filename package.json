@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/lsimmons2/scraping/issues"
   },
-  "homepage": "https://github.com/lsimmons2/scraping#readme"
+  "homepage": "https://github.com/lsimmons2/scraping#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect": "^3.5.0",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.15"
+  }
 }
