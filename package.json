@@ -2,9 +2,9 @@
   "name": "scrape",
   "version": "1.0.0",
   "description": "Scraping data from states with [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/).",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js"
+    "start": "nodemon --exec babel-node --ignore client/ server/index.js"
   },
   "repository": {
     "type": "git",
