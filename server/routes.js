@@ -1,16 +1,34 @@
-import express from 'express';
-import mongo from 'mongodb';
 
-const mongoClient = mongo.MongoClient;
+import express from 'express';
+import pg from 'pg';
+
+let config = {
+  database: 'states',
+  max: 10,
+  idleTimeoutMillis: 30000
+};
+
+let pool = new pg.Pool(config);
 
 function getState(req, res){
-  mongoClient.connect('mongodb://localhost:27017/states', (err, db) => {
-    if(err){
-      return res.send(err);
+  pool.connect( (err, client, done) => {
+
+    if (err) {
+      done();
+      console.error('error connecting to postgres: ', err);
+      return res.status(500).send();
     }
-    let insensitiveState = new RegExp(req.params.state, 'i');
-    db.collection('munis').find({state: insensitiveState}).toArray((err, results) => {
-      return res.send(results);
+
+    let results = [];
+    let queryString = `SELECT * FROM munis WHERE state=\'${req.params.state}\'`;
+    const query = client.query(queryString);
+
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    query.on('end', () => {
+      done();
+      return res.status(200).send(results);
     })
   })
 }
