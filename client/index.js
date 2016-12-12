@@ -1,8 +1,23 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/app';
+import { Provider } from 'react-redux';
 
-render (
-  < App />,
+import configureStore from './configure-store';
+import App from './components/app';
+import states from './states';
+
+
+let initialState = {
+  states: states,
+  munis: []
+};
+
+let store = configureStore(initialState);
+
+
+render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('app')
 )
