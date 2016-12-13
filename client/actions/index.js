@@ -1,6 +1,6 @@
 
 import fetch from 'isomorphic-fetch'
-
+require('es6-promise').polyfill();
 
 function requestMunis(state) {
   return {
@@ -29,7 +29,8 @@ function fetchMunis(state){
 
     dispatch(requestMunis(state));
 
-    return fetch(`/states/${state}`)
+    let queryString = `/states/${state}`;
+    return fetch(queryString)
       .then( response => response.json())
       .then( json => {
         dispatch(requestMunisSuccess(json.rows));

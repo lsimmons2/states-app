@@ -7,8 +7,6 @@ const defMunis = {
 
 let munisReducer = function(munis = defMunis, action){
 
-  console.log('action.type: ', action.type);
-
   switch(action.type){
 
     case 'REQUEST_MUNIS':

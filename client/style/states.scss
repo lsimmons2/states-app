@@ -1,0 +1,52 @@
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+
+  margin: 45px;
+
+  #header-container {
+    text-align: center;
+  }
+
+  #states-list-container {
+
+    margin-top: 40px;
+
+    #states-list {
+
+      margin: 0 auto;
+
+      ul {
+        color: red;
+
+        list-style-type: none;
+        -moz-column-count: 5;
+        -moz-column-gap: 0;
+        // -moz-column-width: 50px;
+        -webkit-column-count: 5;
+        -webkit-column-gap: 0;
+        // -webkit-column-width: 50px;
+        column-count: 5;
+        column-gap: 0;
+        // column-width: 50px;
+
+
+        li {
+          cursor: pointer;
+          &:nth-child(odd) {
+            color: blue;
+          }
+        }
+      }
+    }
+
+  }
+
+  .state-map {
+    height: 300px;
+  }
+
+}
