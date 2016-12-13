@@ -1,10 +1,17 @@
 
-import React from 'react';
+import React from 'react'
+import fetch from 'isomorphic-fetch'
+require('es6-promise').polyfill();
 
 class StatesList extends React.Component {
 
+  constructor(props){
+    super(props);
+    console.log('states: ', this.props.states);
+  }
+
   chooseState(state){
-    console.log(state);
+    this.props.actions.fetchMunis(state);
   }
 
   render(){
@@ -16,6 +23,7 @@ class StatesList extends React.Component {
         </li>
       )
     })
+
     return (
       <div>
         <ul>

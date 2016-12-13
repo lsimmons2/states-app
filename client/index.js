@@ -9,7 +9,12 @@ import states from './states';
 
 let initialState = {
   states: states,
-  munis: []
+  munis: {
+    selectedState: null,
+    isFetching: false,
+    error: false,
+    loaded: null
+  }
 };
 
 let store = configureStore(initialState);

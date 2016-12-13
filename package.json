@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/lsimmons2/scraping#readme",
   "dependencies": {
+    "babel-polyfill": "^6.20.0",
     "body-parser": "^1.15.2",
     "connect": "^3.5.0",
+    "es6-promise": "^4.0.5",
     "express": "^4.14.0",
+    "isomorphic-fetch": "^2.2.1",
     "mongodb": "^2.2.15",
     "pg": "^6.1.1",
     "react": "^15.4.1",

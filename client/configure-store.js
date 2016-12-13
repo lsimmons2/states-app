@@ -8,13 +8,20 @@ import states from './states';
 
 
 let finalCreateStore = compose(
-  applyMiddleware(thunk, logger())
+  applyMiddleware(
+    thunk,
+    logger()
+  )
 )(createStore)
 
 let defInitialState = {
   states: states,
-  munis: []
-}
+  munis: {
+    selectedState: null,
+    isFetching: false,
+    error: false,
+    loaded: null
+  }}
 
 export default function configureStore(initialState = defInitialState){
   return finalCreateStore(rootReducer, initialState)
