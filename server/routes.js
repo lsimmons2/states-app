@@ -20,14 +20,11 @@ function getState(req, res){
     }
 
     let results = [];
-    let queryString = `SELECT * FROM munis WHERE state=\'${req.params.state}\'`;
-    const query = client.query(queryString);
-
-    query.on('row', (row) => {
-      results.push(row);
-    });
-    query.on('end', () => {
-      done();
+    let queryString = `SELECT * FROM munis WHERE state='${req.params.state}'`;
+    client.query(queryString, (err, results) => {
+      if (err) {
+        return res.status(500).send(err)
+      }
       return res.status(200).send(results);
     })
   })
@@ -38,6 +35,7 @@ const router = express.Router();
 
 router.route('/:state')
   .get((req, res) => {
+    console.log(req.method, req.url);
     return getState(req, res);
   })
 
