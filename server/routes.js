@@ -15,9 +15,10 @@ function getState(req, res){
   let queryString = `SELECT * FROM munis WHERE state='${req.params.state}'`;
   db.any(queryString)
     .then( data => {
-      res.status(500).send(data);
+      res.status(200).send(data);
     })
     .catch( err => {
+      console.error('herrrrre', err);
       res.status(500).send(err)
     })
 }
