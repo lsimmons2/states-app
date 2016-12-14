@@ -8,8 +8,8 @@ class Munis extends React.Component {
   render(){
 
     let munisList;
-    if (this.props.munis.loaded){
-      munisList = this.props.munis.loaded.map( muni => {
+    if (this.props.munis){
+      munisList = this.props.munis.map( muni => {
         return (
           <li key={muni.name}>
             <h4>{muni.name}</h4>
@@ -26,20 +26,12 @@ class Munis extends React.Component {
         )
       })
     } else {
-      munisList = <div></div>
+      munisList = <h2>No municipality data could be fetched for {this.props.selectedStateName}</h2>
     }
-
-
-    let imgSrc = `http://www.50states.com/maps/${this.props.munis.selectedState}.gif`
 
     return (
       <div>
-        < Typeahead
-          munis={this.props.munis}
-        />
-        <div id="state-container">
-          <h2>{this.props.munis.selectedState}</h2>
-          {/* <img className="state-map" src={imgSrc}/> */}
+        <div id="munis-container">
           <ul>
             {munisList}
           </ul>

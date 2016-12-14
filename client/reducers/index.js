@@ -1,12 +1,12 @@
 
 import { combineReducers } from 'redux'
-import munisReducer from './munis-reducer'
-import statesReducer from './states-reducer'
+import statesListReducer from './states-list-reducer'
+import selectedStateReducer from './selected-state-reducer'
 
 
 const rootReducer = combineReducers({
-  munis: munisReducer,
-  states: statesReducer
+  statesList: statesListReducer,
+  selectedState: selectedStateReducer
 })
 
 export default rootReducer

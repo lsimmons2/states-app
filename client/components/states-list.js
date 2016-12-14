@@ -9,7 +9,7 @@ class StatesList extends React.Component {
 
   render(){
 
-    let statesList = this.props.states.map( state => {
+    let statesList = this.props.statesList.map( state => {
       return (
         <li key={state} className="state">
           <a onClick={this.chooseState.bind(this, state)}>{state}</a>

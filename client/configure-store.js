@@ -1,10 +1,10 @@
 
-import { applyMiddleware, compose, createStore } from 'redux';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
+import { applyMiddleware, compose, createStore } from 'redux'
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 
-import rootReducer from './reducers';
-import states from './states';
+import rootReducer from './reducers'
+import statesList from './states-list'
 
 
 let finalCreateStore = compose(
@@ -15,12 +15,12 @@ let finalCreateStore = compose(
 )(createStore)
 
 let defInitialState = {
-  states: states,
-  munis: {
-    selectedState: null,
+  statesList: statesList,
+  selectedState: {
+    name: null,
     isFetching: false,
     error: false,
-    loaded: null
+    munis: null
   }}
 
 export default function configureStore(initialState = defInitialState){

@@ -1,19 +1,19 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 
-import configureStore from './configure-store';
-import App from './components/app';
-import states from './states';
+import configureStore from './configure-store'
+import App from './components/app'
+import statesList from './states-list'
 
 
 let initialState = {
-  states: states,
-  munis: {
-    selectedState: null,
+  statesList: statesList,
+  selectedState: {
+    name: null,
     isFetching: false,
     error: false,
-    loaded: null
+    munis: null
   }
 };
 

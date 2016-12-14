@@ -1,6 +1,7 @@
 
 import React from 'react'
 
+
 class Typeahead extends React.Component {
 
   handleChange(event){

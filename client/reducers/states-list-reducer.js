@@ -1,6 +1,6 @@
 
 //don't know yet how to have part of state without assigned reducer
-import initialStates from '../states'
+import initialStates from '../states-list'
 
 let statesReducer = function(states = initialStates, action){
 
