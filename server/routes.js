@@ -1,35 +1,26 @@
 
 import express from 'express';
-import pg from 'pg';
 
-let config = {
-  database: 'states',
-  max: 10,
-  idleTimeoutMillis: 30000
+
+const pgp = require('pg-promise')();
+
+let cn = {
+    database: 'states'
 };
 
-let pool = new pg.Pool(config);
+const db = pgp(cn);
+
 
 function getState(req, res){
-  pool.connect( (err, client, done) => {
-
-    if (err) {
-      done();
-      console.error('error connecting to postgres: ', err);
-      return res.status(500).send();
-    }
-
-    let results = [];
-    let queryString = `SELECT * FROM munis WHERE state='${req.params.state}'`;
-    client.query(queryString, (err, results) => {
-      if (err) {
-        return res.status(500).send(err)
-      }
-      return res.status(200).send(results);
+  let queryString = `SELECT * FROM munis WHERE state='${req.params.state}'`;
+  db.any(queryString)
+    .then( data => {
+      res.status(500).send(data);
     })
-  })
+    .catch( err => {
+      res.status(500).send(err)
+    })
 }
-
 
 const router = express.Router();
 
