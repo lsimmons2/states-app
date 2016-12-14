@@ -1,5 +1,7 @@
 
 import React from 'react'
+import Typeahead from './typeahead'
+
 
 class Munis extends React.Component {
 
@@ -31,12 +33,17 @@ class Munis extends React.Component {
     let imgSrc = `http://www.50states.com/maps/${this.props.munis.selectedState}.gif`
 
     return (
-      <div id="state-container">
-        <h2>{this.props.munis.selectedState}</h2>
-        {/* <img className="state-map" src={imgSrc}/> */}
-        <ul>
-          {munisList}
-        </ul>
+      <div>
+        < Typeahead
+          munis={this.props.munis}
+        />
+        <div id="state-container">
+          <h2>{this.props.munis.selectedState}</h2>
+          {/* <img className="state-map" src={imgSrc}/> */}
+          <ul>
+            {munisList}
+          </ul>
+        </div>
       </div>
     )
   }

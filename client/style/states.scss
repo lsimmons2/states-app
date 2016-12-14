@@ -45,6 +45,19 @@
 
   }
 
+  #state-container {
+    width: 50%;
+    display: inline-block;
+    float: left;
+  }
+
+
+  #typeahead-container {
+    width: 50%;
+    display: inline-block;
+    float: left;
+  }
+
   .state-map {
     height: 300px;
   }
