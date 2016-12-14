@@ -4,7 +4,9 @@
   "description": "\"MERN\" app for visualizing data of the USA",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node --ignore client/ --ignore node_modules/ server/index.js"
+    "start": "nodemon --exec babel-node --ignore client/ --ignore node_modules/ server/index.js",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "repository": {
     "type": "git",

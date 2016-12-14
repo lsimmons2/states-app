@@ -9,12 +9,16 @@ class StatesList extends React.Component {
 
   render(){
 
+    let newEngland = ['Connecticut', 'Maine', 'Massachusetts', 'New Hampshire', 'Rhode Island', 'Vermont'];
+
     let statesList = this.props.statesList.map( state => {
+    if (newEngland.indexOf(state) !== -1){
       return (
         <li key={state} className="state">
           <a onClick={this.chooseState.bind(this, state)}>{state}</a>
         </li>
       )
+    }
     })
 
     return (

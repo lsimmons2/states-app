@@ -6,21 +6,21 @@ import 'isomorphic-fetch'
 function requestMunis(state) {
   return {
     type: 'REQUEST_MUNIS',
-    state: state
+    state
   }
 }
 
 function requestMunisSuccess(munis) {
   return {
     type: 'REQUEST_MUNIS_SUCCESS',
-    munis: munis
+    munis
   }
 }
 
 function requestMunisError(error) {
   return {
     type: 'REQUEST_MUNIS_ERROR',
-    error: error
+    error
   }
 }
 
@@ -45,4 +45,9 @@ function fetchMunis(state){
 }
 
 
-export default { fetchMunis }
+export {
+  requestMunis,
+  requestMunisSuccess,
+  requestMunisError,
+  fetchMunis
+}
