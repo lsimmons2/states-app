@@ -83,7 +83,7 @@ describe('async actions', () => {
 
   describe('fetchMunis', () => {
 
-    it('creates REQUEST_MUNIS and REQUEST_MUNIS_SUCCESS actions when fetching', () => {
+    it('creates REQUEST_MUNIS and REQUEST_MUNIS_SUCCESS actions when valid response fetched', () => {
 
       afterEach( () => {
         nock.cleanAll()
@@ -91,16 +91,13 @@ describe('async actions', () => {
 
       nock('http://localhost:8080/states')
         .get('/Connecticut')
-        .reply(200, {
-          body: {
-            munis: [
-                'City1',
-                'City2',
-                'Town1',
-                'Town2'
-            ]
-          }
-        })
+        .reply(200, [
+            'City1',
+            'City2',
+            'Town1',
+            'Town2'
+        ])
+
 
         let expectedActions = [
           {
@@ -110,10 +107,10 @@ describe('async actions', () => {
           {
             type: 'REQUEST_MUNIS_SUCCESS',
             munis: [
-              'City1',
-              'City2',
-              'Town1',
-              'Town2'
+                'City1',
+                'City2',
+                'Town1',
+                'Town2'
             ]
           }
         ];
@@ -131,9 +128,52 @@ describe('async actions', () => {
         return store.dispatch(actions.fetchMunis('Connecticut'))
           .then( () => {
             let returnedActions = store.getActions();
-            returnedActions.should.equal(expectedActions);
+            returnedActions.should.deep.equal(expectedActions);
           })
     })
+
+
+    it('creates REQUEST_MUNIS and REQUEST_MUNIS_ERROR actions when error fetched', () => {
+
+      afterEach( () => {
+        nock.cleanAll()
+      })
+
+      const err = new Error('nah');
+
+      nock('http://localhost:8080/states')
+        .get('/Connecticut')
+        .reply(500, err)
+
+
+        let expectedActions = [
+          {
+            type: 'REQUEST_MUNIS',
+            state: 'Connecticut'
+          },
+          {
+            type: 'REQUEST_MUNIS_ERROR',
+            error: err
+          }
+        ];
+
+        let defInitialState = {
+          selectedState: {
+            name: null,
+            isFetching: false,
+            error: false,
+            munis: null
+          }};
+
+        let store = mockStore(defInitialState)
+
+        return store.dispatch(actions.fetchMunis('Connecticut'))
+          .then( () => {
+            let returnedActions = store.getActions();
+            returnedActions.should.deep.equal(expectedActions);
+          })
+    })
+
 
   })
 
