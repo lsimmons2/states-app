@@ -4,6 +4,7 @@ import path from 'path';
 import routes from './routes';
 
 const port = process.env.PORT || 3000;
+const env = process.env.NODE_ENV || 'dev';
 const app = express();
 
 
@@ -17,6 +18,10 @@ app.get('/sah', (req, res) => {
   res.send('sah!?');
 })
 
-app.listen(port, () => {
- console.log('listening on port ' + port);
-})
+if (env !== 'test'){
+  app.listen(port, () => {
+   console.log('listening on port ' + port);
+  })
+} else {
+  module.exports = app;
+}

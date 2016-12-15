@@ -41,6 +41,10 @@
     "babel-preset-react": "^6.16.0",
     "chai": "^3.5.0",
     "css-loader": "^0.26.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-mocha": "^3.0.1",
+    "gulp-util": "^3.0.7",
     "jest": "^17.0.3",
     "nock": "^9.0.2",
     "node-sass": "^4.0.0",
@@ -50,6 +54,7 @@
     "redux-thunk": "^2.1.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "supertest": "^2.0.1",
     "webpack-dev-server": "^1.16.2"
   }
 }
