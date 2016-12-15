@@ -35,7 +35,12 @@ function fetchMunis(state){
       url = 'http://localhost:8080' + url;
     }
     return fetch(url)
-      .then( resp => resp.json())
+      .then( resp => {
+          if(!resp.ok){
+            throw new Error(resp.statusText)
+          }
+          return resp.json();
+      })
       .then( munis => {
         dispatch(requestMunisSuccess(munis));
       })
