@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import actions from '../actions'
+import * as actions from '../actions'
 import StatesList from './states-list'
 import SelectedState from './selected-state'
 import '../style/main.scss'

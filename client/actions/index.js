@@ -30,8 +30,11 @@ function fetchMunis(state){
 
     dispatch(requestMunis(state));
 
-    let queryString = `/states/${state}`;
-    return fetch(queryString)
+    let url = `/states/${state}`;
+    if(process.env.NODE_ENV === 'test'){
+      url = 'http://localhost:8080' + url;
+    }
+    return fetch(url)
       .then( resp => resp.json())
       .then( munis => {
         dispatch(requestMunisSuccess(munis));
